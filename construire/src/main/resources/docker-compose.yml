@@ -1,0 +1,28 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb:10.6
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    ports:
+      - 3307:3306
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'  
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.2'
